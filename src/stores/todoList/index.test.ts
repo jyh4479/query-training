@@ -1,5 +1,11 @@
-test('테스트 동작 테스트', () => {
-    const dollar = 2;
+import axios from 'axios';
+import {BASE_URL} from '../../common/constants';
 
-    expect(dollar).toBe(2);
+const getData = (detailUrl: string) => {
+    return axios.get(BASE_URL + detailUrl);
+};
+
+test('테스트 동작 테스트', async () => {
+    const response = await getData('posts');
+    expect(response.status).toBe(200);
 });

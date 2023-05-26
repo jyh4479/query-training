@@ -5,7 +5,7 @@ const getData = (detailUrl: string) => {
     return axios.get(BASE_URL + detailUrl);
 };
 
-test('테스트 동작 테스트', async () => {
+test('API 서버 조회 테스트', async () => {
     const response = await getData('posts');
     expect(response.status).toBe(200);
 });

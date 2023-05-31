@@ -10,13 +10,13 @@ const createTodoList = async (newTodo: CreateTodoModel) => {
 };
 
 const updateTodoList = async (newTodo: UpdateTodoModel) => {
-    await axios.put(BASE_URL + API_KET, newTodo);
+    await axios.put(BASE_URL + API_KET + `/${newTodo.id}`, newTodo);
 };
 
-export const useTodoListCreateMutation = (newTodo: CreateTodoModel) => {
-    return useMutation({mutationFn: () => createTodoList(newTodo)});
+export const useTodoListCreateMutation = () => {
+    return useMutation({mutationFn: createTodoList});
 };
 
-export const useTodoListUpdateMutation = (newTodo: UpdateTodoModel) => {
-    return useMutation({mutationFn: () => updateTodoList(newTodo)});
+export const useTodoListUpdateMutation = () => {
+    return useMutation({mutationFn: updateTodoList});
 };

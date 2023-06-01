@@ -1,5 +1,5 @@
 import {useTodoListQuery} from './useTodoListQuery';
-import {act, renderHook, waitFor} from '@testing-library/react';
+import {renderHook, waitFor} from '@testing-library/react';
 import ReactQueryContextConfig from "../../../tests/ReactQueryContextConfig";
 import {useTodoListCreateMutation, useTodoListUpdateMutation} from "./useTodoListMutation";
 import {CreateTodoModel, UpdateTodoModel} from "../../../models/Todo";
@@ -17,8 +17,10 @@ test('TodoListMutation 생성 테스트', async () => {
     };
 
     const {result} = renderHook(() => useTodoListCreateMutation(), {wrapper: ReactQueryContextConfig});
-    act(() => result.current.mutate(newTodo));
-    await waitFor(() => expect(result.current.status).toBe('success'));
+
+    await waitFor(() => result.current.mutateAsync(newTodo));
+
+    expect(result.current.status).toBe('success');
 });
 
 test('TodoListMutation 업데이트 테스트', async () => {
@@ -30,6 +32,8 @@ test('TodoListMutation 업데이트 테스트', async () => {
     };
 
     const {result} = renderHook(() => useTodoListUpdateMutation(), {wrapper: ReactQueryContextConfig});
-    act(() => result.current.mutate(newTodo));
-    await waitFor(() => expect(result.current.status).toBe('success'));
+
+    await waitFor(() => result.current.mutateAsync(newTodo));
+
+    expect(result.current.status).toBe('success');
 });

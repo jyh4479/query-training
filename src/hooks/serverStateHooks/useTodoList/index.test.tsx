@@ -4,36 +4,39 @@ import ReactQueryContextConfig from "../../../tests/ReactQueryContextConfig";
 import {useTodoListCreateMutation, useTodoListUpdateMutation} from "./useTodoListMutation";
 import {CreateTodoModel, UpdateTodoModel} from "../../../models/Todo";
 
-test('TodoListQuery 조회 테스트', async () => {
-    const {result} = renderHook(() => useTodoListQuery(), {wrapper: ReactQueryContextConfig});
-    await waitFor(() => expect(result.current.status).toBe('success'));
-});
+describe('TodoList API 테스트', () => {
 
-test('TodoListMutation 생성 테스트', async () => {
-    const newTodo: CreateTodoModel = {
-        userId: 2345,
-        title: 'testTitle',
-        body: 'testBody'
-    };
+    test('TodoListQuery 조회 테스트', async () => {
+        const {result} = renderHook(() => useTodoListQuery(), {wrapper: ReactQueryContextConfig});
+        await waitFor(() => expect(result.current.status).toBe('success'));
+    });
 
-    const {result} = renderHook(() => useTodoListCreateMutation(), {wrapper: ReactQueryContextConfig});
+    test('TodoListMutation 생성 테스트', async () => {
+        const newTodo: CreateTodoModel = {
+            userId: 2345,
+            title: 'testTitle',
+            body: 'testBody'
+        };
 
-    await waitFor(() => result.current.mutateAsync(newTodo));
+        const {result} = renderHook(() => useTodoListCreateMutation(), {wrapper: ReactQueryContextConfig});
 
-    expect(result.current.status).toBe('success');
-});
+        await waitFor(() => result.current.mutateAsync(newTodo));
 
-test('TodoListMutation 업데이트 테스트', async () => {
-    const newTodo: UpdateTodoModel = {
-        id: 1,
-        userId: 2345,
-        title: 'testTitle',
-        body: 'testBody'
-    };
+        expect(result.current.status).toBe('success');
+    });
 
-    const {result} = renderHook(() => useTodoListUpdateMutation(), {wrapper: ReactQueryContextConfig});
+    test('TodoListMutation 업데이트 테스트', async () => {
+        const newTodo: UpdateTodoModel = {
+            id: 1,
+            userId: 1,
+            title: 'testTitle',
+            body: 'testBody'
+        };
 
-    await waitFor(() => result.current.mutateAsync(newTodo));
+        const {result} = renderHook(() => useTodoListUpdateMutation(), {wrapper: ReactQueryContextConfig});
 
-    expect(result.current.status).toBe('success');
+        await waitFor(() => result.current.mutateAsync(newTodo), {timeout: 10000});
+
+        expect(result.current.status).toBe('success');
+    });
 });

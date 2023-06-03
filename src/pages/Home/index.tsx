@@ -1,16 +1,12 @@
-import {useTodoListQuery} from "../../hooks/serverStateHooks/useTodoList/useTodoListQuery";
-
 import {Spin} from 'antd';
+import {Suspense} from "react";
+import {TodoListContainer} from "../../containers";
 
 const Home = () => {
-    const {isLoading, error, data: toDoData} = useTodoListQuery();
-
-    if (isLoading) {
-        return <Spin/>;
-    }
-
     return (
-        <div>Home</div>
+        <Suspense fallback={<Spin/>}>
+            <TodoListContainer/>
+        </Suspense>
     )
 };
 

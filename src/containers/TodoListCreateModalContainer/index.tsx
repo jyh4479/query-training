@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Modal, Input } from 'antd';
+import { Modal, Input, Spin } from 'antd';
 import { useTodoListCreateMutation } from '../../hooks/serverStateHooks/useTodoList/useTodoListMutation';
+import styled from '@emotion/styled';
 
 const TodoListCreateModalContainer = (props) => {
-  const { mutate } = useTodoListCreateMutation();
+  const { mutate, isLoading } = useTodoListCreateMutation();
 
   const { modalHandler } = props;
 
@@ -15,18 +16,31 @@ const TodoListCreateModalContainer = (props) => {
     <Modal
       {...modalHandler}
       onOk={() =>
-        mutate({
-          userId: id,
-          title: title,
-          body: body,
-        })
+        mutate(
+          {
+            userId: id,
+            title: title,
+            body: body,
+          },
+          {
+            onSuccess: () => modalHandler.onCancel(),
+          },
+        )
       }
     >
-      <Input placeholder={'ID'} onChange={(e) => setId(Number(e.target.value))} />
-      <Input placeholder={'Title'} onChange={(e) => setTitle(e.target.value)} />
-      <Input placeholder={'Body'} onChange={(e) => setBody(e.target.value)} />
+      <ModalBody>
+        <Spin spinning={isLoading}>
+          <Input placeholder={'ID'} onChange={(e) => setId(Number(e.target.value))} />
+          <Input placeholder={'Title'} onChange={(e) => setTitle(e.target.value)} />
+          <Input placeholder={'Body'} onChange={(e) => setBody(e.target.value)} />
+        </Spin>
+      </ModalBody>
     </Modal>
   );
 };
 
 export default TodoListCreateModalContainer;
+
+const ModalBody = styled.div`
+  padding: 20px;
+`;

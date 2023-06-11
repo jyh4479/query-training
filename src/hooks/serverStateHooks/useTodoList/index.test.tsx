@@ -1,7 +1,7 @@
 import { useTodoListQuery } from './useTodoListQuery';
 import { renderHook, waitFor } from '@testing-library/react';
 import ReactQueryContextConfig from '../../../tests/ReactQueryContextConfig';
-import { useTodoListCreateMutation, useTodoListUpdateMutation } from './useTodoListMutation';
+import { useTodoListCreateMutation, useTodoListUpdateMutation } from './useTodoListQuery';
 import { CreateTodoModel, UpdateTodoModel } from '../../../models/Todo';
 
 describe('TodoList API 테스트', () => {

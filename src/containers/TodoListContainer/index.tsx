@@ -1,6 +1,6 @@
 import { useTodoListQuery } from '../../hooks/serverStateHooks/useTodoList/useTodoListQuery';
 import { List } from 'antd';
-import { TodoListHeader } from '../../components';
+import { TodoListHeaderContainer } from '../../containers';
 
 import type { TodoModel } from '../../models/Todo';
 
@@ -9,7 +9,7 @@ const TodoListContainer = (props) => {
 
   return (
     <List
-      header={<TodoListHeader />}
+      header={<TodoListHeaderContainer />}
       bordered
       dataSource={toDoData}
       renderItem={(item: TodoModel) => <List.Item>{item.body}</List.Item>}

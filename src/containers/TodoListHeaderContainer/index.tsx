@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import TodoListCreateModalContainer from '../../containers/TodoListCreateModalContainer';
+import { TodoListCreateModalContainer } from '../../containers';
 
-const TodoListHeader = (props) => {
+const TodoListHeaderContainer = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleCancel = () => {
@@ -17,4 +17,4 @@ const TodoListHeader = (props) => {
   );
 };
 
-export default TodoListHeader;
+export default TodoListHeaderContainer;

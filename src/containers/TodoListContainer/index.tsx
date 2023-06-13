@@ -5,12 +5,13 @@ import { TodoListHeaderContainer } from '../../containers';
 import type { TodoModel } from '../../models/Todo';
 
 const TodoListContainer = (props) => {
-  const { error, data: toDoData } = useTodoListQuery();
+  const { isLoading, data: toDoData } = useTodoListQuery();
 
   return (
     <List
       header={<TodoListHeaderContainer />}
       bordered
+      loading={isLoading}
       dataSource={toDoData}
       renderItem={(item: TodoModel) => <List.Item>{item.body}</List.Item>}
     />

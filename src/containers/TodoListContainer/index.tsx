@@ -1,10 +1,8 @@
 import { useTodoListQuery } from '../../hooks/serverStateHooks/useTodoList/useTodoListQuery';
-import { Button, List } from 'antd';
-import { TodoListHeaderContainer } from '../../containers';
-import { TodoListItemContainer } from '../../containers';
+import { List } from 'antd';
+import { TodoListHeaderContainer, TodoListItemContainer } from '../../containers';
 
 import type { TodoModel } from '../../models/Todo';
-import styled from '@emotion/styled';
 
 const TodoListContainer = (props) => {
   const { isLoading, data: toDoData } = useTodoListQuery();
@@ -17,7 +15,7 @@ const TodoListContainer = (props) => {
       dataSource={toDoData}
       renderItem={(item: TodoModel) => (
         <List.Item>
-          <TodoListItemContainer data={item.body} />
+          <TodoListItemContainer item={item} />
         </List.Item>
       )}
     />

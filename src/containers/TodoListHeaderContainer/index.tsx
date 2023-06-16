@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { TodoListCreateModalContainer } from '../../containers';
 import { Button, Space } from 'antd';
 import styled from '@emotion/styled';

@@ -1,16 +1,22 @@
-import React from 'react';
-import { useTodoListUpdateMutation } from '../../hooks/serverStateHooks/useTodoList/useTodoListQuery';
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import { Button } from 'antd';
+import TodoListUpdateModalContainer from '../TodoListUpdateModalContainer';
 
 const TodoListItemContainer = (props) => {
-  const { data } = props;
-  const { mutate } = useTodoListUpdateMutation();
+  const { item } = props;
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleCancel = () => {
+    setIsOpen(false);
+  };
 
   return (
     <ItemWrapper>
-      <div>{data}</div>
-      <Button>Update</Button>
+      <TodoListUpdateModalContainer modalHandler={{ open: isOpen, onCancel: handleCancel }} item={item} />
+      <div>{item.body}</div>
+      <Button onClick={() => setIsOpen(true)}>Update</Button>
     </ItemWrapper>
   );
 };

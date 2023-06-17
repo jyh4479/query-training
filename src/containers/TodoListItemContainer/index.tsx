@@ -15,8 +15,10 @@ const TodoListItemContainer = (props) => {
   return (
     <ItemWrapper>
       <TodoListUpdateModalContainer modalHandler={{ open: isOpen, onCancel: handleCancel }} item={item} />
-      <div>{item.body}</div>
-      <Button onClick={() => setIsOpen(true)}>Update</Button>
+      <BodyWrapper>{item.body}</BodyWrapper>
+      <ButtonWrapper>
+        <Button onClick={() => setIsOpen(true)}>Update</Button>
+      </ButtonWrapper>
     </ItemWrapper>
   );
 };
@@ -27,5 +29,17 @@ const ItemWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   text-align: start;
+`;
+
+const BodyWrapper = styled.div`
+  width: 80%;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
 `;

@@ -3,12 +3,13 @@ import { List } from 'antd';
 import { TodoListHeaderContainer, TodoListItemContainer } from '../../containers';
 
 import type { TodoModel } from '../../models/Todo';
+import styled from '@emotion/styled';
 
 const TodoListContainer = (props) => {
   const { isLoading, data: toDoData } = useTodoListQuery();
 
   return (
-    <List
+    <TodoList
       header={<TodoListHeaderContainer />}
       bordered
       loading={isLoading}
@@ -23,3 +24,7 @@ const TodoListContainer = (props) => {
 };
 
 export default TodoListContainer;
+
+const TodoList = styled(List)`
+  width: 700px;
+`;

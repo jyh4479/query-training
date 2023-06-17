@@ -36,8 +36,8 @@ const TodoListUpdateModalContainer = (props: propsType) => {
     >
       <ModalBody>
         <Spin spinning={isLoading}>
-          <UpdateTodoInput placeholder={'Title'} onChange={(e) => setTitle(e.target.value)} />
-          <UpdateTodoInput placeholder={'Body'} onChange={(e) => setBody(e.target.value)} />
+          <UpdateTodoInput placeholder={'Title'} value={title} onChange={(e) => setTitle(e.target.value)} />
+          <UpdateTodoInput placeholder={'Body'} value={body} onChange={(e) => setBody(e.target.value)} />
         </Spin>
       </ModalBody>
     </Modal>

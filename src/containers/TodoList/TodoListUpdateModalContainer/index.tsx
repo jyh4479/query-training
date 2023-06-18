@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Input, Modal, Spin } from 'antd';
 import styled from '@emotion/styled';
-import { useTodoListUpdateMutation } from '../../hooks/serverStateHooks/useTodoList/useTodoListQuery';
-import { Todo } from '../../models/Todo';
+import { useTodoListUpdateMutation } from '../../../hooks/serverStateHooks/useTodoList/useTodoListQuery';
+import { Todo } from '../../../models/Todo';
 
 type propsType = {
   modalHandler: any;
